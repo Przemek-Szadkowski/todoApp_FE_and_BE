@@ -1,11 +1,13 @@
 import { ul } from "./elements.js";
 
+// *** function to handle checkboxes ***
+
 async function handleCheck() {
     const isChecked = this.checked;
     const task = this.nextSibling.textContent;
     
-    const response = await fetch('/todo/changecheck', {
-        method: 'POST',
+    const response = await fetch('/todo', {
+        method: 'PATCH',
         body: JSON.stringify({
             task,
             isFinished: isChecked
@@ -18,10 +20,12 @@ async function handleCheck() {
     renderTasks(data, ul); 
 }
 
+// *** function to handle delete buttons in checkboxes ***
+
 async function deleteTask() {
     const task = this.previousSibling.textContent;
-    const response = await fetch('/todo/delete', {
-        method: 'POST',
+    const response = await fetch('/todo', {
+        method: 'DELETE',
         body: JSON.stringify({
             task,
         }),
@@ -33,12 +37,14 @@ async function deleteTask() {
     renderTasks(data, ul); 
 }
 
+// *** function to handle sort buttons ***
+
 export async function handleOptionsButtons() {
     const sortType = this.dataset.sort;
     const response = await fetch(`/todo/${sortType}`, {
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify({
-            sort: sortType,
+            sortType,
         }),
         headers: {
             'Content-Type': 'application/json',
@@ -48,14 +54,14 @@ export async function handleOptionsButtons() {
     renderTasks(data, ul); 
 }
 
-//main rendering function
+// *** main rendering function ***
 
 export function renderTasks(array, listWrapperElement) {
 
     if(!array) return alert('These task has already exist!');
 
-    listWrapperElement.innerHTML = ''; //clear previous rendered elements
-    console.log(array);
+    // *** clear previous rendered elements ↓↓↓
+    listWrapperElement.innerHTML = '';
 
     const tasksHtml = array.map(element => {
         return `<li><input type="checkbox" class="check" ${element.isFinished ? "checked" : ""}><span>${element.task}</span><button class="delete">X</button></li>`;
@@ -63,18 +69,36 @@ export function renderTasks(array, listWrapperElement) {
 
     listWrapperElement.insertAdjacentHTML('afterbegin', tasksHtml);
 
-    //eventlisteners on checkboxes in list of tasks
-
+    // *** eventlisteners on checkboxes in list of tasks ↓↓↓
     const checkboxes = document.querySelectorAll('.check');
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', handleCheck);
     });
 
-    //eventlisteners on buttons in options
-
+    // *** eventlisteners on buttons in options ↓↓↓
     const deleteButtons = document.querySelectorAll('.delete');
     deleteButtons.forEach(btn => {
         btn.addEventListener('click', deleteTask);
     })
 
+};
+
+// *** function to get and return one single element ***
+
+export function getElement(selector) {
+    const element = document.querySelector(selector);
+
+    if(!element) throw new Error(`Element not found! Element selector: ${selector}`);
+
+    return element;
+};
+
+// *** function to get and return elements in groups ***
+
+export function getElementsInParentsElement (selector, parentElement = document) {
+    const elements = parentElement.querySelectorAll(selector);
+
+    if(!elements) throw new Error(`Elements not found! Elements selector: ${selector}`);
+
+    return elements;
 };

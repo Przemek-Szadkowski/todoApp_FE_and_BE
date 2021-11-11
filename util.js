@@ -7,7 +7,8 @@ const readTasksList = async (path) => {
         tasks = [...JSON.parse(data)];
     } catch(err) {
         if(err.code === "ENOENT") {
-            tasks = []; //if there are no tasks in json file, set tasksList to empty array
+            // *** if there are no tasks in json file, set tasksList to empty array ↓↓↓
+            tasks = [];
         } else {
             console.log(err);
         }
@@ -23,7 +24,12 @@ const wrtiteToTasksList = async (path, list) => {
     }
 };
 
+const findIndexOfTheSameTask = (tasksList, taskJsonFromFrontEnd) => {
+    return tasksList.findIndex(task => task.task === taskJsonFromFrontEnd.task);
+};
+
 module.exports = {
     readTasksList,
     wrtiteToTasksList,
+    findIndexOfTheSameTask,
 };

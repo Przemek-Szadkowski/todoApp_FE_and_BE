@@ -1,8 +1,8 @@
-import { renderTasks, handleOptionsButtons } from "./helpers.js";
 import { ul, taskInput, form, optionButtons } from "./elements.js";
+import { renderTasks, handleOptionsButtons } from "./helpers.js";
 
 
-//rendering tasks when page is loading - START
+// *** rendering tasks when page is loading ***
 
 window.addEventListener('DOMContentLoaded', async () => {
     const response = await fetch('/todo', {
@@ -15,9 +15,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     renderTasks(data, ul);   
 });
 
-//rendering tasks when page is loading - END
-
-//form element logic - front
+// *** form element logic - front ***
 
 form.addEventListener('submit', async event => {
     event.preventDefault();
@@ -25,7 +23,7 @@ form.addEventListener('submit', async event => {
     const task = taskInput.value;
     
     if(task) {
-        const response = await fetch('/todo/add', {
+        const response = await fetch('/todo', {
             method: 'POST',
             body: JSON.stringify({
                 task,
@@ -44,7 +42,7 @@ form.addEventListener('submit', async event => {
     form.reset();
 });
 
-//eventlisteners on options buttons
+// *** eventlisteners on options buttons ***
 
 optionButtons.forEach(btn => {
     btn.addEventListener('click', handleOptionsButtons);

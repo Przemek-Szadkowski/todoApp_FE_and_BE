@@ -1,4 +1,6 @@
-export const taskInput = document.querySelector('.taskInput');
-export const ul = document.querySelector('.tasksList');
-export const form = document.querySelector('form');
-export const optionButtons = document.querySelectorAll('.optionsBtn');
+import { getElement, getElementsInParentsElement } from './helpers.js';
+
+export const taskInput = getElement('.taskInput');
+export const ul = getElement('.tasksList');
+export const form = getElement('form');
+export const optionButtons = getElementsInParentsElement('.optionsBtn');
