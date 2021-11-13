@@ -7,4 +7,4 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use('/todo', todoRouter);
 
-app.listen(3000, 'localhost');
+app.listen(3000, '0.0.0.0');
