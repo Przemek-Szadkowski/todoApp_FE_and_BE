@@ -155,6 +155,7 @@ li button:hover {
   font-size: 0.7rem;
   z-index: 3;
   transition: 0.5s;
+  color: #ddd;
 }
 
 .optionsBtn:hover {
