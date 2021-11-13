@@ -186,3 +186,49 @@ li button:hover {
 .options:hover::after {
   color: #ccc;
 }
+
+@media only screen and (max-width: 1050px) {
+  .taskInput {
+    width: 100%;
+    height: auto;
+    grid-area: 1/1;
+  }
+
+  .submitButton {
+    width: 50%;
+    height: 50%;
+    grid-area: 2/1;
+  }
+
+  .taskForm {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  .tasks {
+    font-size: 1.3rem;
+    padding-top: 15px;
+  }
+
+  .tasksList {
+    padding: 0;
+  }
+
+  li {
+    padding-top: 12px;
+  }
+
+  .check {
+    margin-right: 20px;
+    padding-top: 12px;
+  }
+
+  .optionsBtn {
+    width: 65px;
+    font-size: 0.5rem;
+  }
+
+  .options::after {
+    font-size: 0.8rem;
+  }
+}
