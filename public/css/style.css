@@ -1,6 +1,6 @@
 * {
   margin: 0;
-  font-family: "Comic Neue", cursive;
+  font-family: "Special Elite", cursive;
 }
 
 body {
@@ -229,5 +229,9 @@ li button:hover {
 
   .options::after {
     font-size: 0.8rem;
+  }
+
+  .options {
+    bottom: -13%;
   }
 }
