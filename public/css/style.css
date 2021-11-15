@@ -85,6 +85,11 @@ li button:hover {
   box-shadow: 0px 0px 12px #f00;
 }
 
+.delete {
+  text-align: center;
+  line-height: calc(30px / 2);
+}
+
 .taskForm {
   width: 80%;
   height: 100%;
