@@ -20,7 +20,7 @@
 
 ## General info
 
-I have made this app during Express.js block. It is my first thin I have ever made in Express.js on my own.
+I have made this app during Express.js block. It is my first thing I have ever made in Express.js on my own.
 
 ## Screenshots
 
